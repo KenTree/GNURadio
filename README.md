@@ -1,6 +1,6 @@
 # GNU Radio Projects
 
-**This repository tracks my progress on learning GNU Radio**
+This repository tracks my progress on learning GNU Radio
 
 ## About
 

@@ -18,17 +18,18 @@ class blk(gr.sync_block):  # other base classes are basic_block, decim_block, in
         gr.sync_block.__init__(
             self,
             name='Max Hold Block',   # will show up in GRC
-            in_sig=[(np.float32, vectorSize)],
-            out_sig=[(np.float32, vectorSize)]
+            in_sig=[(np.float32, vectorSize), (np.float32, vectorSize)],
+            out_sig=[(np.float32, vectorSize), (np.float32, vectorSize)]
         )
         # if an attribute with the same name as a parameter is found,
         # a callback is registered (properties work, too).
 
     def work(self, input_items, output_items):
         """example: multiply with constant"""
-        for vectorIndex in range(len(input_items[0])):
-            maxValue = np.max(input_items[0][vectorIndex])
-            for sampleIndex in range(len(input_items[0][vectorIndex])):
-                output_items[0][vectorIndex][sampleIndex] = maxValue
+        for portIndex in range(len(input_items)):
+            for vectorIndex in range(len(input_items[portIndex])):
+                maxValue = np.max(input_items[portIndex][vectorIndex])
+                for sampleIndex in range(len(input_items[portIndex][vectorIndex])):
+                    output_items[portIndex][vectorIndex][sampleIndex] = maxValue
         
         return len(output_items[0])

@@ -30,10 +30,13 @@ With a gaussian noise amplitude fixed at 1 and signal amplitude at 0.5:
 * Changing the signal source amplitude from 0 to 0.5 triggered recording stop/start transitions 
 
 **Concepts practiced**
+
 Complex IQ samples, average power estimation, threshold detection, asynchronous message passing, state management, and conditional sample recording.
 
 **Current limitations**
+
 The detector identifies elevated power rather than a specific transmission. Recording boundaries are not sample-exact because control messages are asynchronous. Recordings remain in memory, grow with recording duration, and are lost when the program exits.
 
 **Personal Notes**
+
 This project allowed me to question why and how signals mixed in with noise should be treated. I was able to gain a lot more experience with creating my own embedded python blocks to handle signal data while also learning how to use message control in these blocks.
